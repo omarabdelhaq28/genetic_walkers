@@ -1,0 +1,11 @@
+# local files
+.vscode/
+box2d/
+nlohmann/
+lib/
+.Rhistory
+
+# temporary files
+.container/
+*.o
+*.json

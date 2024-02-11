@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# use box2d's testing environment to render walker trajectories; ideally this
+# is a temporary solution since it requires building box2d every time
+
+# based off of retired/viz.sh
+
+# copy the cmake file needed for the box2d testbed to recognize our script
+cp CMakeLists.txt box2d/testbed
+
+# copy/overwrite source files needed for the script
+cp -r   include/statics.h include/walker.h include/nlohmann \
+        walker.cpp walker_state.cpp walker_parameters.cpp \
+        box2d/testbed 
+cp trajectory.cpp box2d/testbed/tests
+
+# rebuild box2d 
+# [TODO] this happens every time you want to render; streamline?
+cd box2d
+./build.sh
+
+# run the testbed (visualization)
+./build/bin/testbed
+cd ..
